@@ -1,0 +1,5 @@
+homepage: "https://www.cremedigital.com/"
+documentation: "https://github.com/cremedigital/gtm-templates-ipmeta.io-ga4/blob/main/README.md"
+versions:
+  - sha: 2d73b42c8a4d625787a3ddc6bd7b43d3219032c6
+    changeNotes: Initial release.
