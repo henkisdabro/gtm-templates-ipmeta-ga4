@@ -1,7 +1,9 @@
 homepage: "https://www.cremedigital.com/"
 documentation: "https://github.com/cremedigital/gtm-templates-ipmeta.io-ga4/blob/main/README.md"
 versions:
+  # Latest version
   - sha: 513684113ee0b5b349a6053ec8edb6365b0d2e1a
     changeNotes: Remove gtmEventName field and logic.
+  # Older versions
   - sha: 2d73b42c8a4d625787a3ddc6bd7b43d3219032c6
     changeNotes: Initial release.
