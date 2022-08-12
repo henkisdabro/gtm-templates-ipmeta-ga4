@@ -50,15 +50,6 @@ ___TEMPLATE_PARAMETERS___
   },
   {
     "type": "TEXT",
-    "name": "gtmEventName",
-    "displayName": "GTM Event Name (for Custom Event trigger)",
-    "simpleValueType": true,
-    "defaultValue": "ipmeta_loaded",
-    "alwaysInSummary": true,
-    "help": "This GTM Event Name can be changed if you have a preferred or different naming convention for your implementation. If this value is changed, ensure to make changes to your \u0027Custom Event\u0027 trigger criteria accordingly."
-  },
-  {
-    "type": "TEXT",
     "name": "ipmetaApiKey",
     "displayName": "IpMeta API Key",
     "simpleValueType": true,
@@ -85,7 +76,6 @@ const queryPermission = require('queryPermission');
 const copyFromWindow = require('copyFromWindow');
 const url = data.sourceUrl;
 const apiKey = data.ipmetaApiKey;
-const gtmEventName = data.gtmEventName;
 
 // If the user chose to log debug output, initialize the logging method
 const log = data.debug ? logToConsole : (() => {});
@@ -102,10 +92,10 @@ const onSuccess = () => {
   log('IpMeta: Script loaded successfully.');
   const IpMetaGa4 = copyFromWindow('IpMetaGa4');
   IpMetaGa4({
-    gtmEventKey: gtmEventName,
+    gtmEventKey: 'ipmeta_loaded',
     apiKey: apiKey
   });
-  log('IpMeta: GTM event name "' + gtmEventName + '" should be in the dataLayer if successful');
+  log('IpMeta: GTM event name "ipmeta_loaded" should be in the dataLayer if successful');
   data.gtmOnSuccess();
 };
 
