@@ -1,7 +1,6 @@
 homepage: "https://www.cremedigital.com/"
-documentation: "https://github.com/cremedigital/gtm-templates-ipmeta.io-ga4/blob/main/README.md"
+documentation: "https://github.com/cremedigital/gtm-templates-ipmeta-ga4"
 versions:
   # Latest version
-  # Older versions
   - sha: a1ebae4b404e9760ac28dcdd0f35f393537a57de
     changeNotes: Initial release.
