@@ -2,8 +2,10 @@ homepage: "https://www.henriksoderlund.com/"
 documentation: "https://github.com/henkisdabro/gtm-templates-ipmeta-ga4"
 versions:
   # Latest version
+  - sha: ad2ee7a161615364d4dacf0a3cefdd0ae8344535
+    changeNotes: Remove User Input for Script URL
+  # Previous versions
   - sha: 4f52724010dd7f622bf4bd36dc9ac4b5e5339175
     changeNotes: Update Branding and Ownership.
-  # Previous versions
   - sha: a1ebae4b404e9760ac28dcdd0f35f393537a57de
     changeNotes: Initial release.
