@@ -34,22 +34,6 @@ ___TEMPLATE_PARAMETERS___
 [
   {
     "type": "TEXT",
-    "name": "sourceUrl",
-    "displayName": "IpMeta Library Source URL",
-    "simpleValueType": true,
-    "defaultValue": "https://ipmeta.io/plugin.js",
-    "valueValidators": [
-      {
-        "type": "REGEX",
-        "args": [
-          "^https?:\\/\\/.*$"
-        ]
-      }
-    ],
-    "help": "Unlikely this URL never needs to change from the default. Double-check against the `src` attribute in the IpMeta code snippet provided during account creation and instructions on the ipmeta.io website."
-  },
-  {
-    "type": "TEXT",
     "name": "ipmetaApiKey",
     "displayName": "IpMeta API Key",
     "simpleValueType": true,
@@ -72,14 +56,12 @@ ___SANDBOXED_JS_FOR_WEB_TEMPLATE___
 
 const injectScript = require('injectScript');
 const logToConsole = require('logToConsole');
-const queryPermission = require('queryPermission');
 const copyFromWindow = require('copyFromWindow');
-const url = data.sourceUrl;
-const apiKey = data.ipmetaApiKey;
+const ipmetaApiKey = data.ipmetaApiKey;
 
 // If the user chose to log debug output, initialize the logging method
 const log = data.debug ? logToConsole : (() => {});
-log('IpMeta: Loading script from ' + url);
+log('IpMeta: Loading script: https://ipmeta.io/plugin.js');
 
 // If the script fails to load, log a message and signal failure
 const onFailure = () => {
@@ -93,22 +75,14 @@ const onSuccess = () => {
   const IpMetaGa4 = copyFromWindow('IpMetaGa4');
   IpMetaGa4({
     gtmEventKey: 'ipmeta_loaded',
-    apiKey: apiKey
+    apiKey: ipmetaApiKey
   });
-  log('IpMeta: GTM event name "ipmeta_loaded" should be in the dataLayer if successful');
+  log('IpMeta: GTM event name "ipmeta_loaded" expected in dataLayer if successful');
   data.gtmOnSuccess();
 };
 
-
-// If the URL input by the user matches the permissions set for the template,
-// inject the script with the onSuccess and onFailure methods as callbacks.
-if (queryPermission('inject_script', url)) {
-  injectScript(url, onSuccess, onFailure);
-} else {
-  log('IpMeta: Script load failed due to permissions mismatch.');
-  data.gtmOnFailure();
-}
-
+// Inject the script with the onSuccess and onFailure methods as callbacks.
+  injectScript('https://ipmeta.io/plugin.js', onSuccess, onFailure);
 
 ___WEB_PERMISSIONS___
 
@@ -148,7 +122,7 @@ ___WEB_PERMISSIONS___
             "listItem": [
               {
                 "type": 1,
-                "string": "https://ipmeta.io/"
+                "string": "https://ipmeta.io/plugin.js"
               }
             ]
           }
